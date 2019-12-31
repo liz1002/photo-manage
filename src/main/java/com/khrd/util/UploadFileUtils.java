@@ -13,11 +13,15 @@ import org.springframework.util.FileCopyUtils;
 
 public class UploadFileUtils {
 	//upload함수, 원본 업로드, 썸네일 업로드, 년/월/일 폴더 만들기
-	//uploadPath = C:/zzz/upload
+	//uploadPath = C:/photomanage/upload
 	//originalFileName = 파일명
 	//data = 이미지 데이터
 	//return 값 = 썸네일 파일명	
 	public static String uploadFile(String uploadPath, String originalFilename, byte[] data) throws IOException {
+		File dir = new File(uploadPath);
+		if(dir.exists() == false) {
+			dir.mkdir();
+		}
 		
 		//원본 업로드 처리
 		UUID uid = UUID.randomUUID();
@@ -74,7 +78,7 @@ public class UploadFileUtils {
 	//paths = {yearPath, monthPath, datePath}
 	private static void makeDir(String uploadPath, String... paths) { // ... : 해당 타입의 변수 개수 지정X, 배열로 받음
 		for(String path : paths) {
-			File dir = new File(uploadPath + path); // => c:/zzz/upload/yyyy/MM/dd
+			File dir = new File(uploadPath + path); // => c:/photomanage/upload/yyyy/MM/dd
 			if(dir.exists() == false) {
 				dir.mkdir();
 			}

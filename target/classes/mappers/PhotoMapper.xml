@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.PhotoMapper">
+
+	<insert id="upload" parameterType="PhotoVO">
+		insert into photo(title, writer) values(#{title}, #{writer})
+	</insert>
+
+	<select id="selectList" resultType="PhotoVO">
+		select * from photo
+	</select>
+	
+	<select id="selectByNo" resultType="PhotoVO">
+		select * from photo where pno=#{pno}
+	</select>
+	
+	<select id="selectListCount" resultType="int">
+		select count(pno) from photo
+	</select>
+	
+	<select id="selectListPage" resultType="PhotoVO">
+		select * from photo limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<delete id="remove">
+		delete from photo where title=#{title}
+	</delete>
+</mapper>

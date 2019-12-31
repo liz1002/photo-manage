@@ -22,7 +22,7 @@
 	</bean> -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/book_ex"/>
+		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/photo_manage"/>
 		<property name="username" value="root"/>
 		<property name="password" value="rootroot"></property>
 	</bean>	
@@ -30,7 +30,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
-		<!-- <property name="mapperLocations" value="classpath:/mappers/*Mapper.xml"/> -->
+		<property name="mapperLocations" value="classpath:/mappers/*Mapper.xml"/>
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
