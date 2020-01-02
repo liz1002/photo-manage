@@ -6,16 +6,20 @@
 <style>
 	section{
 		width: 1200px;
-		min-height: 200px;
 		margin: 0 auto;
+	}
+	div#imgWrap{
+		width: 1200px;
+		min-height: 200px;
 		position: relative;
 		overflow: hidden;
 	}
 	div.imgbox{
 		width: 300px;
-		min-height: 200px;
+		min-height: 220px;
 		float: left;
-		margin: 5px 50px;
+		margin: 15px 50px;
+		padding: 5px 0px; 
 		position: relative;
 		display: flex;
 		justify-content: center;
@@ -38,8 +42,8 @@
 	}
 	button.del{
 		position: absolute;
-		top: 5px;
-		right: 5px;
+		top: 10px;
+		right: 10px;
 		background: rgba(188, 143, 143, 0.7);
 		border: #BC8F8F;
 		color: #fff;
@@ -50,54 +54,86 @@
 		width: 100%;
 		height: 100%;
 		background : rgba(255, 255, 255, 0.7);
-		/* rgba(237, 126, 126, 0.7) / rgba(246, 192, 192, 0.7) */
 		display: none;
-		/* padding: 50px 0px; */
 		position: absolute;
 		left: 0px;
 		top: 0px;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		cursor: pointer;
 	}
 	#bigImg img{
 		display: none;
 		max-height: 70%;
 	}
+	div#pageWrap{
+		width: 100%;
+		margin: 20px 0px;
+	}
+	#pageWrap ul#pagination{
+		width: 360px;
+		list-style: none;
+		overflow: hidden;
+		margin: 0 auto;
+		text-align: center;
+	}	
+	#pagination li{
+		display: inline;
+		float: left;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		margin: 5px;
+		background: #F5ECEF;
+		box-shadow: gray 1px 1px 2px;
+	}
+	#pagination li.active{
+		background: rgba(247, 193, 193, 0.7);
+	}
+	#pagination li a{
+		text-decoration: none;
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		color: gray;
+		font-size: 14px;
+	}
 </style>
 
 <section>
-	<c:forEach var="photo" items="${list}">
-		<div class="imgbox" data-src="${photo.title}">
-			<img src="${pageContext.request.contextPath}/upload/displayThumbFile?filename=${photo.title}">
-			<p>
-				<fmt:formatDate value="${photo.adddate}" pattern="yyyy-MM-d"/>
-			</p>
-			<p class="filename">
-				${fn:substring(photo.title, 49, -1)}				
-			</p>
-			<button class="del" data-src="${photo.title}">X</button>
+	<div id="imgWrap">
+		<c:forEach var="photo" items="${list}">
+			<div class="imgbox" data-src="${photo.title}">
+				<img src="${pageContext.request.contextPath}/upload/displayThumbFile?filename=${photo.title}">
+				<p>
+					<fmt:formatDate value="${photo.adddate}" pattern="yyyy-MM-d"/>
+				</p>
+				<p class="filename">
+					${fn:substring(photo.title, 49, -1)}				
+				</p>
+				<button class="del" data-src="${photo.title}">X</button>
+			</div>
+		</c:forEach>
+		<div id="bigImg">
+			<img>
 		</div>
-	</c:forEach>
-	
-	<div id="bigImg">
-		<img>
 	</div>
 	
 	<div id="pageWrap">
-		<ul class="pagination">
+		<ul id="pagination">
 			<c:if test="${pageMaker.prev == true}">
-				<li><a href="listPage?page=1&searchType=${cri.searchType}&keyword=${cri.keyword}">&ctdot;</a></li>
-				<li><a href="listPage?page=${pageMaker.startPage-1}&searchType=${cri.searchType}&keyword=${cri.keyword}">&lBarr;</a></li>
+				<li><a href="view?page=1">&laquo;</a></li>
+				<li><a href="view?page=${pageMaker.startPage-1}">&lsaquo;</a></li>
 			</c:if> 
 			<c:forEach var="idx" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 				<li ${idx == pageMaker.cri.page ? 'class=active' : ''}> <!-- pageMaker.cri.page : 현재 페이지 번호 -->
-					<a href="listPage?page=${idx}&searchType=${cri.searchType}&keyword=${cri.keyword}">${idx}</a>
+					<a href="view?page=${idx}">${idx}</a>
 				</li>
 			</c:forEach>
 			<c:if test="${pageMaker.next == true}">
-				<li><a href="listPage?page=${pageMaker.endPage+1}&searchType=${cri.searchType}&keyword=${cri.keyword}">&rBarr;</a></li>
-				<li><a href="listPage?page=${pageMaker.lastPage}&searchType=${cri.searchType}&keyword=${cri.keyword}">&ctdot;</a></li>
+				<li><a href="view?page=${pageMaker.endPage+1}">&rsaquo;</a></li>
+				<li><a href="view?page=${pageMaker.lastPage}">&raquo;</a></li>
 			</c:if>
 		</ul>
 	</div>

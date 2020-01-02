@@ -27,16 +27,25 @@
 	<form action="loginPost" method="post">	
 		<p>
 			<label>아이디</label>
-			<input type="text" name="id">
+			<input type="text" name="id" data-msg="아이디를 입력하세요.">
 		</p>
 		<p>
 			<label>비밀번호</label>
-			<input type="password" name="pwd">
+			<input type="password" name="pwd" data-msg="비밀번호를 입력하세요.">
 		</p>
 		<p>
 			<input type="submit" value="로그인">
 		</p>
 	</form>
 </section>
+
+<script>
+$("form").submit(function() {
+	var res = check($("input[name]"));
+	if(res == false){
+		return false;
+	}
+})	
+</script>
 
 <%@include file="../include/footer.jsp" %>

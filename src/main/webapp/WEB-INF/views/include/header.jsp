@@ -20,10 +20,10 @@
 	header div#menu{
 		width: 100%;
 		background: #F7C1C1;
-		padding: 10px 0px;
 	}
 	#menu ul{
 		width: 60%;
+		height: 100%;
 		margin: 0 auto;
 		list-style: none; 
 		overflow: hidden;
@@ -33,19 +33,22 @@
 		height: 100%;		
 		float: left;
 		text-align: center;
-		padding: 5px 0px;
+		padding: 10px 0px;
 	}
 	#menu ul li:hover{
-		background: lightgray;
+		background: #E39F9F;
 	}
 	#menu ul li a{
 		display: inline-block;
+		width: 100%;
+		height: 100%;
 		color: #fff;
 		text-decoration: none;
 		font-size: 18px;
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 </head>
 <body>
 	<header>

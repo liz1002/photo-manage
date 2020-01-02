@@ -23,9 +23,9 @@ import com.khrd.util.UploadFileUtils;
 
 @RequestMapping("/photo/*")
 @Controller
-public class photoController {
+public class PhotoController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(photoController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PhotoController.class);
 	
 	@Resource(name = "uploadPath") //bean id로 주입 받기(= DI : Dependency Injection)
 	private String uploadPath; //파일 저장 경로(c:/photomanage/upload)
@@ -36,12 +36,11 @@ public class photoController {
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	public void viewGet(Model model, Criteria cri) {
 		logger.info("* * * * * [ view GET ] * * * * *");
+		logger.info("* * * cri * * * " + cri);
 	
-		try {
-			//Criteria cri = new Criteria(page, 15); //한 번에 보일 사진 개수 객체화
-			
+		try {			
 			List<PhotoVO> list = service.selectListPage(cri);
-			logger.info("* * * list * * * " + list);
+			logger.info("* * * photo list * * * " + list);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(cri);

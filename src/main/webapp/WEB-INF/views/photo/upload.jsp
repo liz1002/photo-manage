@@ -39,10 +39,10 @@
 
 <section>
 	<form action="upload" method="post" enctype="multipart/form-data">	
-		<input type="hidden" name="auth" value="${Auth}">
+		<input type="hidden" name="auth" value="${Auth}" data-msg="로그인 후 이용해주세요.">
 		<p>
 			<label>업로드할 파일</label>
-			<input type="file" name="files" multiple="multiple">
+			<input type="file" name="files" multiple="multiple" data-msg="파일을 선택하세요.">
 		</p>
 		<div id="preImgBox"></div>
 		<p>
@@ -69,6 +69,13 @@
 				$div.append($img);
 				$("#preImgBox").append($div);
 			}
+		}
+	})
+	
+	$("form").submit(function() {
+		var res = check($("input[name]"));
+		if(res == false){
+			return false;
 		}
 	})
 </script>

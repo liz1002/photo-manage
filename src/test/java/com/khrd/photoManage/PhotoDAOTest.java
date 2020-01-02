@@ -21,8 +21,13 @@ public class PhotoDAOTest {
 		dao.selectList();
 	}
 	
-	@Test
+//	@Test
 	public void testSelectListPage() {
-		dao.selectListPage(new Criteria(1, 15));
+		dao.selectListPage(new Criteria(28, 15));
+	}
+	
+//	@Test
+	public void testSelectListCount() {
+		dao.selectListCount();
 	}
 }

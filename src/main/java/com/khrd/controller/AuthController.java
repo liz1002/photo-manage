@@ -36,6 +36,7 @@ public class AuthController {
 		
 		if(dbVo == null) { //id & pw 불일치
 			logger.info("* * * * * [ login POST NOT !!] * * * * *");	
+			model.addAttribute("msg", "존재하지 않는 아이디이거나 비밀번호가 일치하지 않습니다.");
 			return;
 		}
 		
